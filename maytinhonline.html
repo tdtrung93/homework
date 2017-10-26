@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Máy tính online</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    * {padding: 0px; margin: 0px;}
+    h2 {
+      text-align: center;
+    }
+    .calculator {
+      width: 400px;
+      height: auto;
+      margin: 10px auto;
+      background-color: black;
+      border: 1px solid black;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .input {
+      width: calc(100%);
+      background-color: white;
+      border: 1px solid black;
+      padding: 5px 8px;
+      font-size:20px;
+      border-bottom: none;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    .output {
+      width: calc(100%);
+      background-color: white;
+      border: 1px solid black;
+      padding: 5px 8px;
+      font-size: 20px;
+      border-top: none;
+      text-align: right;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    .button button {
+      width: 19.1%;
+      margin-top: 5px;
+      padding: 5px;
+      font-size: 20px;
+      border: 1px solid black;
+      border-radius: 4px;
+      color: white;
+    }
+    button.number {background-color: blue;}
+    button.event {background-color: orange;}
+    button.equal {background-color: #808080;}
+    button.dot {background-color: green;}
+    button.clear {background-color: red;}
+    button.del {background-color: #808080;}
+    button.zero {width: 144.5px;}
+    button.equal {width: 144.5px;}
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Máy tính online</h2>
+  <div class="calculator">
+    <input type="text" class="input" value="">
+    <input type="text" class="output" value="">
+    <div class="button">
+      <button class="number">7</button>
+      <button class="number">8</button>
+      <button class="number">9</button>
+      <button class="del">Del</button>
+      <button class="clear">Clear</button>
+      <button class="number">4</button>
+      <button class="number">5</button>
+      <button class="number">6</button>
+      <button class="plus event">+</button>
+      <button class="nimus event">-</button>
+      <button class="number">1</button>
+      <button class="number">2</button>
+      <button class="number">3</button>
+      <button class="multiply event">*</button>
+      <button class="divide event">/</button>
+      <button class="number zero">0</button>
+      <button class="dot">.</button>
+      <button class="equal">=</button>
+    </div>
+  </div>
+    <script>
+      $(document).ready(function() {
+        $('.input').attr('disabled', 'true');
+        $('.output').attr('disabled', 'true');
+        $('.multiply').attr('disabled', 'true');
+        $('.divide').attr('disabled', 'true');
+      });
+      a = "";
+      $('.number, .clear').click(function() {
+        $('.multiply').removeAttr('disabled');
+        $('.divide').removeAttr('disabled');
+        $('.dot').removeAttr('disabled');
+        $value = $(this).html();
+        a += $value;
+        $('.input').val(a);
+      });
+
+      $('.dot').click(function(){
+        $value = $(this).html();
+        a += $value;
+        $('.input').val(a);
+        $('.dot').attr('disabled', 'true');
+        $('.multiply').attr('disabled', 'true');
+        $('.divide').attr('disabled', 'true');
+      });
+
+      $('.plus, .nimus, .multiply, .divide').click(function() {
+        $value = $(this).html();
+        a += $value;
+        $('.input').val(a);
+        $('.multiply').attr('disabled', 'true');
+        $('.divide').attr('disabled', 'true');
+      });
+
+      $('.equal').click(function(){
+        $('.output').val(eval(a));
+        a = "";
+      });
+          
+      $('.del').click(function() {
+        $string = $('.input').val();
+        $('.input').val($string.substring(0, $string.length - 1));
+        a = $string.substring(0, $string.length - 1);
+      });
+
+      $('.clear').click(function() {
+        $('.input').val('');
+        $('.output').val('');
+        $('.dot').removeAttr('disabled');
+        $('.multiply, .divide').attr('disabled', 'true');
+        a = "";
+      });
+    </script>  
+</div>
+
+</body>
+</html># homework
